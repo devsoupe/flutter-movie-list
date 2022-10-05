@@ -6,15 +6,17 @@ import 'package:flutter_movie_list/screen/home/blocs/error_count/error_count_blo
 import 'package:flutter_movie_list/screen/home/blocs/now_playing_movie/now_playing_movie_list_bloc.dart';
 import 'package:flutter_movie_list/screen/home/blocs/popular/popular_movie_list_bloc.dart';
 import 'package:flutter_movie_list/screen/home/blocs/upcoming/upcoming_movie_list_bloc.dart';
-import 'package:flutter_movie_list/screen/home/home_screen.dart';
 import 'package:flutter_movie_list/screen/movie_detail/movie_detail.dart';
+import 'package:flutter_movie_list/screen/movie_search/movie_search.dart';
+import 'package:flutter_movie_list/screen/tab_page/tab_page.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-const String homeScreenRoute = '/';
+const String tabPageRoute = '/';
 const String movieDetailRoute = '/movie_detail';
+const String movieSearchRoute = '/movie_search';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -25,11 +27,14 @@ class MyApp extends StatelessWidget {
       title: 'Movie List',
       onGenerateRoute: (settings) {
         switch (settings.name) {
-          case homeScreenRoute:
-            return MaterialPageRoute(builder: (context) => const HomeScreen());
+          case tabPageRoute:
+            return MaterialPageRoute(builder: (context) => const TabPage());
           case movieDetailRoute:
             final id = settings.arguments as int;
             return MaterialPageRoute(builder: (context) => MovieDetail(id: id));
+
+          case movieSearchRoute:
+            return MaterialPageRoute(builder: (context) => MovieSearch());
         }
       },
       // initialRoute: '/',
@@ -60,7 +65,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ],
-          child: const HomeScreen(),
+          child: const TabPage(),
         ),
       ),
     );
